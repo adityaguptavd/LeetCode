@@ -1,0 +1,137 @@
+Problem - 1: Two Sum
+Link: https://leetcode.com/problems/two-sum/
+Solution Path: Unordered Map/
+Algorithm Name: Hash Map Lookup (Single-pass Hashing)
+Problem Type: Array + Hash Map
+Key Idea: Store seen numbers in hash map, check complement (target - current)
+Algorithm Steps:
+  1. Create empty hash map
+  2. For each element:
+       - Compute requiredValue = target - nums[i]
+       - If requiredValue exists in map → return indices
+       - Else store nums[i] in map
+Time Complexity: O(n)
+Space Complexity: O(n)
+Applicability: Pair-sum problems, extendable to k-sum
+
+--------------------------------------------------
+
+Problem - 2: Add Two Numbers
+Link: https://leetcode.com/problems/add-two-numbers/
+Solution Path: Linked List/
+Algorithm Name: Linked List Digit-wise Addition
+Problem Type: Linked List
+Key Idea: Traverse both lists, add digit by digit with carry
+Algorithm Steps:
+  1. Initialize dummy node for result list
+  2. While l1 or l2 or carry exists:
+       - Sum digits + carry
+       - Store (sum % 10) as new node
+       - Update carry = sum / 10
+  3. Return result->next
+Time Complexity: O(max(m, n))   (m, n = lengths of l1, l2)
+Space Complexity: O(max(m, n))  (new list created)
+Applicability: Adding two large numbers represented as linked lists
+
+--------------------------------------------------
+
+Problem - 3: Longest Substring Without Repeating Characters
+Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+Solution Path: String/
+Algorithm Name: Sliding Window with Hash Map
+Problem Type: String + Sliding Window
+Key Idea: Maintain window [left, right], move left when duplicate found
+Algorithm Steps:
+  1. Use hash/array to store last index of each character
+  2. Traverse string with right pointer
+  3. If char is seen, move left = max(left, lastIndex + 1)
+  4. Update maxWindowLength
+Time Complexity: O(n)
+Space Complexity: O(1) or O(k) (k = charset size, e.g., 256 for ASCII)
+Applicability: Longest unique substring/window problems
+
+--------------------------------------------------
+
+Problem - 4: Median of Two Sorted Arrays
+Link: https://leetcode.com/problems/median-of-two-sorted-arrays/
+Solution Path: Arrays/
+Algorithm Name: Binary Search Partition
+Problem Type: Array + Binary Search
+Key Idea: Partition arrays so all left ≤ all right, then compute median
+Algorithm Steps:
+  1. Ensure nums1 is smaller array
+  2. Binary search on nums1’s partition index i
+  3. Compute j = (m + n + 1)/2 - i
+  4. Compare left1, right1, left2, right2
+  5. If partition valid → compute median
+  6. Else adjust binary search bounds
+Time Complexity: O(log(min(m, n)))
+Space Complexity: O(1)
+Applicability: Median finding in sorted arrays
+
+--------------------------------------------------
+
+Problem - 5: Longest Palindromic Substring
+Link: https://leetcode.com/problems/longest-palindromic-substring/
+Solution Path: String/
+Algorithm Name: Expand Around Center
+Problem Type: String + Palindrome
+Key Idea: For each index, expand around (i) and (i, i+1) to check palindrome
+Algorithm Steps:
+  1. For each character index:
+       - Expand around single char (odd length)
+       - Expand around two chars (even length)
+  2. Track max length and starting index
+  3. Return substring
+Time Complexity: O(n^2)
+Space Complexity: O(1)
+Applicability: Palindrome-related substring problems
+
+--------------------------------------------------
+
+Problem - 9: Palindrome Number
+Link: https://leetcode.com/problems/palindrome-number/
+Solution Path: Integers/
+Algorithm Name: Half-Reversal Palindrome Check
+Problem Type: Math
+Key Idea: Instead of reversing the whole number (risking overflow), build only half of the reversed digits and compare with the remaining half.
+Algorithm Steps:
+  1. Handle negatives (return false) and numbers ending with 0 (except 0 itself).
+  2. Repeatedly take last digit and build reversed half.
+  3. Stop once reversed half ≥ remaining half.
+  4. Compare equality (even digits) or after removing middle digit (odd digits).
+Time Complexity: O(log10(n)) (only half digits processed)
+Space Complexity: O(1)
+Applicability: Palindrome checks on numbers where full reversal may cause overflow or unnecessary computation.
+
+--------------------------------------------------
+
+Problem - 13: Roman to Integer
+Link: https://leetcode.com/problems/roman-to-integer/
+Solution Path: String/
+Algorithm Name: Greedy Left-to-Right Parsing
+Problem Type: String + Hash Map
+Key Idea: If smaller value precedes larger → subtract, else add
+Algorithm Steps:
+  1. Traverse characters
+  2. If current < next → subtract current
+  3. Else add current
+Time Complexity: O(n)
+Space Complexity: O(1)
+Applicability: Roman numeral conversion
+
+--------------------------------------------------
+
+Problem - 14: Longest Common Prefix
+Link: https://leetcode.com/problems/longest-common-prefix/
+Solution Path: String/
+Algorithm Name: Horizontal Scanning
+Problem Type: String + Array
+Key Idea: Compare prefix with each string and shrink until valid
+Algorithm Steps:
+  1. Take first string as prefix
+  2. Compare with each string, trim prefix when mismatch
+  3. Stop if prefix becomes empty
+Time Complexity: O(S) (S = total chars across strings)
+Space Complexity: O(1)
+Applicability: Common prefix problems, DNA/string matching

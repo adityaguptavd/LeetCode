@@ -1,3 +1,12 @@
+/*
+Problem - 3: Longest Substring Without Repeating Characters
+Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+Constraints:
+    0 <= s.length <= 5 * 104
+    s consists of English letters, digits, symbols and spaces.
+*/
+
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -52,6 +61,26 @@ public:
             }
         }
         return maxSubstrLength;
+    }
+};
+
+class OptimizedSolution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int stringLength = s.size();
+        int maxWindowLength = 0;
+        int left = 0, right = 0;
+        vector<int> visited(256, -1); // assuming ASCII charcters
+        while(right < stringLength) {
+            char ch = s[right];
+            if(visited[ch] != -1) {
+                left = max(left, visited[ch] + 1);
+            }
+            visited[ch] = right;
+            maxWindowLength = max(maxWindowLength, right - left + 1);
+            right++;
+        }
+        return maxWindowLength;
     }
 };
 

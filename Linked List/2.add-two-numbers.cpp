@@ -1,3 +1,13 @@
+/*
+Problem - 2: Add Two Numbers
+Link: https://leetcode.com/problems/add-two-numbers/
+
+Constraints:
+    The number of nodes in each linked list is in the range [1, 100].
+    0 <= Node.val <= 9
+    It is guaranteed that the list represents a number that does not have leading zeros.
+*/
+
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -58,6 +68,32 @@ public:
         }
 
         return result;
+    }
+};
+
+class OptimizedSolution {
+public:
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* result = new ListNode();
+        ListNode* temp = result;
+        int carry = 0;
+        int sum = 0;
+        while(l1 != nullptr || l2 != nullptr || carry) {
+            sum = carry;
+            if(l1) {
+                sum += l1->val;
+                l1 = l1->next;
+            }
+            if(l2) {
+                sum += l2->val;
+                l2 = l2->next;
+            }
+            temp->next = new ListNode(sum % 10);
+            temp = temp->next;
+            carry = sum / 10;
+        }
+        return result->next;
     }
 };
 
