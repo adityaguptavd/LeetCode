@@ -89,6 +89,54 @@ Applicability: Palindrome-related substring problems
 
 --------------------------------------------------
 
+Problem - 6: Zigzag Conversion (Math Skip Approach)
+Link: https://leetcode.com/problems/zigzag-conversion/
+Solution Path: String/
+Algorithm Name: Row-wise Traversal (Math Skip)
+Problem Type: String Manipulation
+Key Idea: Characters repeat in cycles of cycleLen = (2 * numRows - i) and/or ((2 * i) - 2) where cycleLen > 0. For each row, pick characters at correct skip intervals.
+Algorithm Steps:
+  1. Handle edge case: if numRows == 1 → return string as is
+  2. For each row:
+       - Initialize index = row
+       - While index < string length:
+            - Add s[index] to result
+            - For middle rows:
+                 - If next skip (2*numRows - 2 - 2*row) is valid → add that character too
+            - Move to next cycle index += cycleLen
+  3. Return the built string
+Time Complexity: O(n)
+Space Complexity: O(1) extra (excluding result string)
+Applicability: Problems with repeating patterns, zigzag or diagonal traversals
+
+--------------------------------------------------
+
+Problem - 6: Zigzag Conversion (Vector Approach)
+Link: https://leetcode.com/problems/zigzag-conversion/
+
+Solution Path: String/
+Algorithm Name: Row Simulation (Vector Approach)
+Problem Type: String + Simulation
+Key Idea: Simulate zigzag writing row by row using a vector of strings
+Algorithm Steps:
+
+Create a vector of strings with numRows rows
+
+Traverse input string:
+
+Append char to current row
+
+If at first/last row, reverse direction
+
+Move curRow accordingly (up or down)
+
+Concatenate all rows to form final string
+Time Complexity: O(n) + O(n) -> O(n)
+Space Complexity: O(n)
+Applicability: Problems requiring row-by-row string construction or zigzag patterns
+
+--------------------------------------------------
+
 Problem - 9: Palindrome Number
 Link: https://leetcode.com/problems/palindrome-number/
 Solution Path: Integers/
